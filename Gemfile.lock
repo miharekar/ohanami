@@ -239,6 +239,7 @@ GEM
       stackprof (>= 0.2.13)
     sqlite3 (1.7.0-aarch64-linux)
     sqlite3 (1.7.0-arm64-darwin)
+    sqlite3 (1.7.0-x86_64-linux)
     stackprof (0.2.25)
     standard (1.33.0)
       language_server-protocol (~> 3.17.0.2)
@@ -261,6 +262,8 @@ GEM
     tailwindcss-rails (2.1.0-aarch64-linux)
       railties (>= 6.0.0)
     tailwindcss-rails (2.1.0-arm64-darwin)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.1.0-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.3.0)
     timeout (0.4.1)
@@ -285,6 +288,7 @@ GEM
 PLATFORMS
   aarch64-linux
   arm64-darwin-23
+  x86_64-linux
 
 DEPENDENCIES
   annotate
