@@ -1,26 +1,24 @@
 <div id="<%= dom_id game %>">
-  <%= form_with(model: game) do |form| %>
+  <%= form_with(model: game, data: { controller: "auto-form-submitter", auto_form_submitter_target: "form"}) do |form| %>
     <div class="container p-4 mx-auto">
-      <h1 class="mb-4 text-2xl font-bold text-center">Ohanami Scoresheet - <%= game.name %></h1>
+      <h1 class="mb-4 text-2xl font-bold text-center"><%= game.name %></h1>
       <div class="flex flex-col gap-4 md:flex-row md:justify-center md:items-center">
         <% game.players.each do |player| %>
           <div class="font-semibold text-center"><%= player.name %></div>
         <% end %>
       </div>
-      <!-- Round 1 -->
       <div class="flex flex-col gap-4 mt-2 md:flex-row md:justify-center md:items-center">
         <div>Round 1</div>
         <% game.players.each do |player| %>
           <div>
             <% card_set = player.card_sets.find_or_create_by(round: 1, color: 'blue') %>
             <div class="mb-2">
-              <%= form.number_field "card_sets_#{card_set.id}", value: card_set&.cards, class: "border p-2 rounded text-center mb-1", min: 0 %>
+              <%= form.number_field "card_sets_#{card_set.id}", id: "card_sets_input_#{card_set.id}", value: card_set&.cards, class: "border p-2 rounded text-center mb-1", min: 0 %>
               <span>Blue</span>
             </div>
           </div>
         <% end %>
       </div>
-      <!-- Round 2 -->
       <div class="flex flex-col gap-4 mt-2 md:flex-row md:justify-center md:items-center">
         <div>Round 2</div>
         <% game.players.each do |player| %>
@@ -28,14 +26,13 @@
             <% %w[blue green].each do |color| %>
               <% card_set = player.card_sets.find_or_create_by(round: 2, color: color) %>
               <div class="mb-2">
-                <%= form.number_field "card_sets_#{card_set.id}", value: card_set&.cards, class: "border p-2 rounded text-center mb-1", min: 0 %>
+                <%= form.number_field "card_sets_#{card_set.id}", id: "card_sets_input_#{card_set.id}", value: card_set&.cards, class: "border p-2 rounded text-center mb-1", min: 0 %>
                 <span><%= color.capitalize %></span>
               </div>
             <% end %>
           </div>
         <% end %>
       </div>
-      <!-- Round 3 -->
       <div class="flex flex-col gap-4 mt-2 md:flex-row md:justify-center md:items-center">
         <div>Round 3</div>
         <% game.players.each do |player| %>
@@ -43,23 +40,22 @@
             <% %w[blue green gray pink].each do |color| %>
               <% card_set = player.card_sets.find_or_create_by(round: 3, color: color) %>
               <div class="mb-2">
-                <%= form.number_field "card_sets_#{card_set.id}", value: card_set&.cards, class: "border p-2 rounded text-center mb-1", min: 0 %>
+                <%= form.number_field "card_sets_#{card_set.id}", id: "card_sets_input_#{card_set.id}", value: card_set&.cards, class: "border p-2 rounded text-center mb-1", min: 0 %>
                 <span><%= color.capitalize %></span>
               </div>
             <% end %>
           </div>
         <% end %>
       </div>
-      <!-- Scores -->
       <div class="flex flex-col gap-4 mt-2 md:flex-row md:justify-center md:items-center">
-        <div>Scores:</div>
         <% game.players.each do |player| %>
-          <div>
+          <div class="text-xl font-semibold">
+            <%= player.name %>:
             <%= player.card_sets.sum(&:value) %> points
           </div>
         <% end %>
       </div>
-      <div class="mt-4 text-center">
+      <div class="hidden mt-4 text-center">
         <%= form.submit 'Calculate Score', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
       </div>
     </div>

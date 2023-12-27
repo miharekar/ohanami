@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class CardSet < ApplicationRecord
   belongs_to :player
 
   COLOR_VALUES = {
     blue: 3,
     green: 4,
-    gray: 7,
+    gray: 7
   }
 
   def cards
@@ -12,7 +14,7 @@ class CardSet < ApplicationRecord
   end
 
   def value
-    if color == 'pink'
+    if color == "pink"
       cards * (cards + 1) / 2
     else
       cards * COLOR_VALUES[color.to_sym]

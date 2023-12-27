@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :set_game, only: %i[show edit update destroy]
 
   def index
     @games = Game.order(created_at: :desc)
   end
 
   def show
-    @game = @game
   end
 
   def new
@@ -20,7 +21,7 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     params[:game].each do |key, name|
-      next if !key.start_with?('player_') || name.blank?
+      next if !key.start_with?("player_") || name.blank?
 
       @game.players << Player.new(name: name)
     end
@@ -34,9 +35,10 @@ class GamesController < ApplicationController
 
   def update
     params[:game].each do |key, cards|
-      next unless key.start_with?('card_sets_')
-      card_set_id = key.split('card_sets_').last
-      card_set = CardSet.find(card_set_id).update!(cards: cards)
+      next unless key.start_with?("card_sets_")
+
+      card_set_id = key.split("card_sets_").last
+      CardSet.find(card_set_id).update!(cards: cards)
     end
 
     redirect_to @game, notice: "Game was successfully updated.", status: :see_other
@@ -48,11 +50,12 @@ class GamesController < ApplicationController
   end
 
   private
-    def set_game
-      @game = Game.find(params[:id])
-    end
 
-    def game_params
-      params.require(:game).permit(:name)
-    end
+  def set_game
+    @game = Game.find(params[:id])
+  end
+
+  def game_params
+    params.require(:game).permit(:name)
+  end
 end

@@ -75,15 +75,20 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    addressable (2.8.6)
+      public_suffix (>= 2.0.2, < 6.0)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
+    ast (2.4.2)
     base64 (0.2.0)
+    benchmark-ips (2.13.0)
     bigdecimal (3.1.5)
     bindex (0.8.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    colorize (1.1.0)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -91,6 +96,8 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dockerfile-rails (1.6.1)
+      rails (>= 3.0.0)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -106,6 +113,13 @@ GEM
     irb (1.11.0)
       rdoc
       reline (>= 0.3.8)
+    json (2.7.1)
+    language_server-protocol (3.17.0.3)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
+    lint_roller (1.1.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -133,6 +147,10 @@ GEM
     nokogiri (1.15.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
+    parallel (1.24.0)
+    parser (3.2.2.4)
+      ast (~> 2.4.1)
+      racc
     propshaft (0.8.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -140,6 +158,7 @@ GEM
       railties (>= 7.0.0)
     psych (5.1.2)
       stringio
+    public_suffix (5.0.4)
     puma (6.4.0)
       nio4r (~> 2.0)
     racc (1.7.3)
@@ -180,6 +199,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.1.0)
     rdoc (6.6.2)
       psych (>= 4.0.0)
@@ -187,33 +207,70 @@ GEM
       redis-client (>= 0.17.0)
     redis-client (0.19.1)
       connection_pool
+    regexp_parser (2.8.3)
     reline (0.4.1)
       io-console (~> 0.5)
+    rexml (3.2.6)
+    rubocop (1.59.0)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.2.2.4)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.30.0)
+      parser (>= 3.2.1.0)
+    rubocop-performance (1.20.1)
+      rubocop (>= 1.48.1, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
+    rubocop-rails (2.23.1)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    sqlite3 (1.7.0)
-      mini_portile2 (~> 2.8.0)
+    singed (0.2.1)
+      colorize
+      stackprof (>= 0.2.13)
     sqlite3 (1.7.0-aarch64-linux)
     sqlite3 (1.7.0-arm64-darwin)
-    sqlite3 (1.7.0-x86_64-linux)
+    stackprof (0.2.25)
+    standard (1.33.0)
+      language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.0)
+      rubocop (~> 1.59.0)
+      standard-custom (~> 1.0.0)
+      standard-performance (~> 1.3)
+    standard-custom (1.0.2)
+      lint_roller (~> 1.0)
+      rubocop (~> 1.50)
+    standard-performance (1.3.0)
+      lint_roller (~> 1.1)
+      rubocop-performance (~> 1.20.1)
+    standard-rails (1.0.0)
+      lint_roller (~> 1.0)
+      rubocop-rails (~> 2.23.1)
     stimulus-rails (1.3.0)
       railties (>= 6.0.0)
     stringio (3.1.0)
-    tailwindcss-rails (2.1.0)
-      railties (>= 6.0.0)
     tailwindcss-rails (2.1.0-aarch64-linux)
       railties (>= 6.0.0)
     tailwindcss-rails (2.1.0-arm64-darwin)
       railties (>= 6.0.0)
-    tailwindcss-rails (2.1.0-x86_64-linux)
-      railties (>= 6.0.0)
     thor (1.3.0)
     timeout (0.4.1)
-    turbo-rails (1.5.0)
+    turbo-rails (2.0.0.pre.beta.2)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.5.0)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -228,23 +285,28 @@ GEM
 PLATFORMS
   aarch64-linux
   arm64-darwin-23
-  ruby
-  x86_64-linux
 
 DEPENDENCIES
   annotate
+  benchmark-ips
   bootsnap
   debug
+  dockerfile-rails
   importmap-rails
+  letter_opener
   propshaft
-  puma (>= 5.0)
+  puma
   rails (~> 7.1.2)
-  redis (>= 4.0.1)
-  sqlite3 (~> 1.4)
+  redis
+  rubocop
+  singed
+  sqlite3
+  standard
+  standard-performance
+  standard-rails
   stimulus-rails
   tailwindcss-rails
-  turbo-rails
-  tzinfo-data
+  turbo-rails (~> 2.0.0.pre.beta.2)
   web-console
 
 RUBY VERSION
