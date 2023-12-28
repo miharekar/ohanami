@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_27_215942) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_28_195517) do
   create_table "card_sets", id: { type: :binary, limit: 16 }, force: :cascade do |t|
     t.binary "player_id", limit: 16, null: false
     t.integer "round"
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_215942) do
     t.datetime "updated_at", null: false
     t.index ["id"], name: "index_card_sets_on_id", unique: true
     t.index ["player_id"], name: "index_card_sets_on_player_id"
+    t.index ["round", "color", "player_id"], name: "index_card_sets_on_round_and_color_and_player_id", unique: true
   end
 
   create_table "games", id: { type: :binary, limit: 16 }, force: :cascade do |t|

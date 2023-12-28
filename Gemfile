@@ -6,6 +6,7 @@ ruby "3.2.2"
 
 gem "importmap-rails"
 gem "inline_svg"
+gem "memo_wise"
 gem "propshaft"
 gem "puma"
 gem "rails"

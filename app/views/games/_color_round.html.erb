@@ -11,7 +11,7 @@
 <% end %>
 </div>
 <% game.players.each do |player| %>
-  <% card_set = player.card_sets.find_or_create_by(round: round, color: color) %>
+  <% card_set = game.card_sets_by_round_and_color_and_player[[round, color, player.id]] %>
   <div class="col-span-2">
     <% color_classes = case color %>
     <% when "blue" %>

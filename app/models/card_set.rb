@@ -3,11 +3,7 @@
 class CardSet < ApplicationRecord
   belongs_to :player, touch: true
 
-  COLOR_VALUES = {
-    blue: 3,
-    green: 4,
-    gray: 7
-  }
+  COLOR_VALUES = {"blue" => 3, "green" => 4, "gray" => 7}.freeze
 
   def cards
     super.presence || 0
@@ -17,7 +13,7 @@ class CardSet < ApplicationRecord
     if color == "pink"
       cards * (cards + 1) / 2
     else
-      cards * COLOR_VALUES[color.to_sym]
+      cards * COLOR_VALUES[color]
     end
   end
 end
@@ -36,8 +32,9 @@ end
 #
 # Indexes
 #
-#  index_card_sets_on_id         (id) UNIQUE
-#  index_card_sets_on_player_id  (player_id)
+#  index_card_sets_on_id                             (id) UNIQUE
+#  index_card_sets_on_player_id                      (player_id)
+#  index_card_sets_on_round_and_color_and_player_id  (round,color,player_id) UNIQUE
 #
 # Foreign Keys
 #

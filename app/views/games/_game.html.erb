@@ -28,7 +28,7 @@
       <div></div>
       <% game.players.each do |player| %>
         <div class="col-span-2 text-lg font-semibold text-center" id="player-<%= player.id %>-score">
-          <%= player.card_sets.sum(&:value) %>
+          <%= game.score_by_player_id[player.id] %>
         </div>
       <% end %>
     </div>
