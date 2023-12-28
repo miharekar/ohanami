@@ -6,7 +6,9 @@ export default class extends Controller {
 
   connect() {
     this.formTarget.querySelectorAll("input").forEach((element) => {
-      element.addEventListener("change", (event) => {
+      element.addEventListener("input", (event) => {
+        if (event.data === null) return
+
         this.formTarget.requestSubmit()
       })
     })

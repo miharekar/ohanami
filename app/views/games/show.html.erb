@@ -1,4 +1,6 @@
 <div class="flex w-full mx-auto md:w-2/3">
-  <div class="mx-auto">
+  <div>
     <%= render @game %>
+    <%= link_to "New game", new_game_path, class: "mt-20 mx-4 rounded text-center py-3 px-5 bg-gray-500 text-white block font-medium" %>
   </div>
+</div>

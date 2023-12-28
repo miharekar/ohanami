@@ -1,63 +1,38 @@
+<!-- Possible grid classes: grid-cols-3 grid-cols-5 grid-cols-7 grid-cols-9 -->
+<!-- Possible span classes: col-span-3 col-span-5 col-span-7 col-span-9 -->
+<% columns = (game.players.size * 2) + 1 %>
 <div id="<%= dom_id game %>">
+  <h1 class="mb-4 text-xl font-bold text-center">
+    <%= game.name %>
+    <br>
+    <%= game.created_at.strftime("%B %d, %Y %H:%M") %>
+  </h1>
   <%= form_with(model: game, data: { controller: "auto-form-submitter", auto_form_submitter_target: "form"}) do |form| %>
-    <div class="container p-4 mx-auto">
-      <h1 class="mb-4 text-2xl font-bold text-center"><%= game.name %></h1>
-      <div class="flex flex-col gap-4 md:flex-row md:justify-center md:items-center">
-        <% game.players.each do |player| %>
-          <div class="font-semibold text-center"><%= player.name %></div>
-        <% end %>
-      </div>
-      <div class="flex flex-col gap-4 mt-2 md:flex-row md:justify-center md:items-center">
-        <div>Round 1</div>
-        <% game.players.each do |player| %>
-          <div>
-            <% card_set = player.card_sets.find_or_create_by(round: 1, color: 'blue') %>
-            <div class="mb-2">
-              <%= form.number_field "card_sets_#{card_set.id}", id: "card_sets_input_#{card_set.id}", value: card_set&.cards, class: "border p-2 rounded text-center mb-1", min: 0 %>
-              <span>Blue</span>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <div class="flex flex-col gap-4 mt-2 md:flex-row md:justify-center md:items-center">
-        <div>Round 2</div>
-        <% game.players.each do |player| %>
-          <div>
-            <% %w[blue green].each do |color| %>
-              <% card_set = player.card_sets.find_or_create_by(round: 2, color: color) %>
-              <div class="mb-2">
-                <%= form.number_field "card_sets_#{card_set.id}", id: "card_sets_input_#{card_set.id}", value: card_set&.cards, class: "border p-2 rounded text-center mb-1", min: 0 %>
-                <span><%= color.capitalize %></span>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <div class="flex flex-col gap-4 mt-2 md:flex-row md:justify-center md:items-center">
-        <div>Round 3</div>
-        <% game.players.each do |player| %>
-          <div>
-            <% %w[blue green gray pink].each do |color| %>
-              <% card_set = player.card_sets.find_or_create_by(round: 3, color: color) %>
-              <div class="mb-2">
-                <%= form.number_field "card_sets_#{card_set.id}", id: "card_sets_input_#{card_set.id}", value: card_set&.cards, class: "border p-2 rounded text-center mb-1", min: 0 %>
-                <span><%= color.capitalize %></span>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <div class="flex flex-col gap-4 mt-2 md:flex-row md:justify-center md:items-center">
-        <% game.players.each do |player| %>
-          <div class="text-xl font-semibold">
-            <%= player.name %>:
-            <%= player.card_sets.sum(&:value) %> points
-          </div>
-        <% end %>
-      </div>
-      <div class="hidden mt-4 text-center">
-        <%= form.submit 'Calculate Score', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-      </div>
+    <div class="grid grid-cols-<%= columns %>">
+      <div></div>
+      <% game.players.each do |player| %>
+        <p class="col-span-2 truncate">
+          <%= player.name %>
+        </p>
+      <% end %>
+      <%= render "row", form: form, game: game, color: "blue", round: 1 %>
+      <hr class="col-span-<%= columns %>">
+      <%= render "row", form: form, game: game, color: "blue", round: 2 %>
+      <%= render "row", form: form, game: game, color: "green", round: 2 %>
+      <hr class="col-span-<%= columns %>">
+      <%= render "row", form: form, game: game, color: "blue", round: 3 %>
+      <%= render "row", form: form, game: game, color: "green", round: 3 %>
+      <%= render "row", form: form, game: game, color: "gray", round: 3 %>
+      <%= render "row", form: form, game: game, color: "pink", round: 3 %>
+      <div></div>
+      <% game.players.each do |player| %>
+        <div class="col-span-2 text-lg font-semibold text-center" id="player-<%= player.id %>-score">
+          <%= player.card_sets.sum(&:value) %>
+        </div>
+      <% end %>
+    </div>
+    <div class="hidden">
+      <%= form.submit 'Calculate Score' %>
     </div>
   <% end %>
 </div>

@@ -1,0 +1,28 @@
+<div class="flex items-center justify-center">
+  <% case color %>
+  <% when "blue" %>
+  <%= inline_svg_tag "drop.svg", class: "h-6 w-auto text-blue-600 fill-current" %>
+  <% when "green" %>
+  <%= inline_svg_tag "leaf.svg", class: "h-6 w-auto text-green-600 fill-current" %>
+  <% when "gray" %>
+  <%= inline_svg_tag "rock.svg", class: "h-6 w-auto text-gray-600 fill-current" %>
+  <% when "pink" %>
+  <%= inline_svg_tag "flower.svg", class: "h-6 w-auto text-pink-600 fill-current" %>
+<% end %>
+</div>
+<% game.players.each do |player| %>
+  <% card_set = player.card_sets.find_or_create_by(round: round, color: color) %>
+  <div class="col-span-2">
+    <% color_classes = case color %>
+    <% when "blue" %>
+    <% "bg-blue-50 focus:ring-blue-600" %>
+    <% when "green" %>
+    <% "bg-green-50 focus:ring-green-600" %>
+    <% when "gray" %>
+    <% "bg-gray-50 focus:ring-gray-600" %>
+    <% when "pink" %>
+    <% "bg-pink-50 focus:ring-pink-600" %>
+  <% end %>
+  <%= form.number_field "card_sets_#{card_set.id}", id: "card_sets_input_#{card_set.id}", value: card_set&.cards, class: "block w-full text-center border-0 focus:ring-2 focus:ring-inset #{color_classes}", min: 0 %>
+</div>
+<% end %>
