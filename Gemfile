@@ -14,7 +14,7 @@ gem "sqlite3"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "turbo-rails", "~> 2.0.0.pre.beta.2"
-gem "uuid_v7"
+gem "uuid7"
 
 gem "bootsnap", require: false
 

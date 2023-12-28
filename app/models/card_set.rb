@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class CardSet < ApplicationRecord
-  attribute :player_id, :uuid_v7
-
   belongs_to :player
 
   COLOR_VALUES = {

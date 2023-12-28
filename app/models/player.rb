@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Player < ApplicationRecord
-  attribute :game_id, :uuid_v7
-
   belongs_to :game
   has_many :card_sets, dependent: :destroy
 end
