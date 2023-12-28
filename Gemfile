@@ -2,12 +2,12 @@
 
 source "https://rubygems.org"
 
-ruby "3.3.0"
+ruby "3.2.2"
 
 gem "importmap-rails"
 gem "propshaft"
 gem "puma"
-gem "rails", "~> 7.1.2"
+gem "rails"
 gem "redis"
 gem "sqlite3"
 gem "stimulus-rails"
