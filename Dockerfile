@@ -17,7 +17,6 @@ ENV BUNDLE_DEPLOYMENT="1" \
 RUN gem update --system --no-document && \
   gem install -N bundler
 
-
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
@@ -55,17 +54,12 @@ COPY --from=build /rails /rails
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \
   useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
-  mkdir /data && \
-  chown -R 1000:1000 db log storage tmp /data
+  chown -R 1000:1000 db log storage tmp
 USER 1000:1000
-
-# Deployment options
-ENV DATABASE_URL="sqlite3:///data/production.sqlite3"
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-VOLUME /data
 CMD ["./bin/rails", "server"]

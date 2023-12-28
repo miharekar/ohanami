@@ -93,3 +93,6 @@ Style/SymbolArray:
 
 Style/WordArray:
   Enabled: true
+
+Rails/DangerousColumnNames:
+  Enabled: false
