@@ -5,6 +5,7 @@ source "https://rubygems.org"
 ruby "3.2.2"
 
 gem "importmap-rails"
+gem "inline_svg"
 gem "propshaft"
 gem "puma"
 gem "rails"
@@ -13,6 +14,7 @@ gem "sqlite3"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "turbo-rails", "~> 2.0.0.pre.beta.2"
+gem "uuid_v7"
 
 gem "bootsnap", require: false
 
