@@ -23,10 +23,10 @@ class GamesController < ApplicationController
       @game.players << Player.new(name: name)
     end
 
-    if @game.save
+    if @game.players.size > 1 && @game.save
       redirect_to @game
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_game_path, notice: "Game must have at least two players."
     end
   end
 
@@ -38,7 +38,7 @@ class GamesController < ApplicationController
       CardSet.find(card_set_id).update!(cards: cards)
     end
 
-    redirect_to @game, notice: "Game was successfully updated.", status: :see_other
+    redirect_to @game
   end
 
   private

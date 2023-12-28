@@ -1,4 +1,7 @@
 <div class="w-full px-4 mx-auto md:w-2/3">
   <h1 class="text-4xl font-bold">New game</h1>
+  <% if notice.present? %>
+    <p class="inline-block w-full px-3 py-2 my-5 font-medium text-red-500 rounded-lg bg-red-50" id="notice"><%= notice %></p>
+  <% end %>
   <%= render "form", game: @game %>
 </div>
