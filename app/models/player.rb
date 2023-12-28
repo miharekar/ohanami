@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Player < ApplicationRecord
-  belongs_to :game
+  belongs_to :game, touch: true
   has_many :card_sets, dependent: :destroy
 end
 

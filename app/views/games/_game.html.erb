@@ -1,6 +1,7 @@
 <!-- Possible grid classes: grid-cols-3 grid-cols-5 grid-cols-7 grid-cols-9 -->
 <!-- Possible span classes: col-span-3 col-span-5 col-span-7 col-span-9 -->
 <% columns = (game.players.size * 2) + 1 %>
+<%= turbo_stream_from game %>
 <div id="<%= dom_id game %>">
   <h1 class="mb-4 text-xl font-bold text-center">
     <%= game.name %>
@@ -15,15 +16,15 @@
           <%= player.name %>
         </p>
       <% end %>
-      <%= render "row", form: form, game: game, color: "blue", round: 1 %>
+      <%= render "color_round", form: form, game: game, color: "blue", round: 1 %>
       <hr class="col-span-<%= columns %>">
-      <%= render "row", form: form, game: game, color: "blue", round: 2 %>
-      <%= render "row", form: form, game: game, color: "green", round: 2 %>
+      <%= render "color_round", form: form, game: game, color: "blue", round: 2 %>
+      <%= render "color_round", form: form, game: game, color: "green", round: 2 %>
       <hr class="col-span-<%= columns %>">
-      <%= render "row", form: form, game: game, color: "blue", round: 3 %>
-      <%= render "row", form: form, game: game, color: "green", round: 3 %>
-      <%= render "row", form: form, game: game, color: "gray", round: 3 %>
-      <%= render "row", form: form, game: game, color: "pink", round: 3 %>
+      <%= render "color_round", form: form, game: game, color: "blue", round: 3 %>
+      <%= render "color_round", form: form, game: game, color: "green", round: 3 %>
+      <%= render "color_round", form: form, game: game, color: "gray", round: 3 %>
+      <%= render "color_round", form: form, game: game, color: "pink", round: 3 %>
       <div></div>
       <% game.players.each do |player| %>
         <div class="col-span-2 text-lg font-semibold text-center" id="player-<%= player.id %>-score">

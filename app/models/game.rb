@@ -2,6 +2,8 @@
 
 class Game < ApplicationRecord
   has_many :players, dependent: :destroy
+
+  broadcasts_refreshes
 end
 
 # == Schema Information

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CardSet < ApplicationRecord
-  belongs_to :player
+  belongs_to :player, touch: true
 
   COLOR_VALUES = {
     blue: 3,
