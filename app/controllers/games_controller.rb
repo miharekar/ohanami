@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class GamesController < ApplicationController
+  prepend MemoWise
+
   before_action :set_game, only: %i[show update]
 
   def index
@@ -31,11 +33,9 @@ class GamesController < ApplicationController
   end
 
   def update
-    params[:game].each do |key, cards|
-      next unless key.start_with?("card_sets_")
-
-      card_set_id = key.split("card_sets_").last
-      CardSet.find(card_set_id).update!(cards: cards)
+    if card_set_updates.any?
+      CardSet.upsert_all(card_set_updates, unique_by: :id)
+      @game.touch
     end
 
     redirect_to @game
@@ -49,5 +49,20 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:name)
+  end
+
+  memo_wise def card_set_updates
+    card_sets = @game.card_sets.to_h { |card_set| [card_set.id, card_set.attributes] }
+    updates = []
+    params[:game].each do |key, cards|
+      next unless key.start_with?("card_sets_")
+
+      id = key.split("card_sets_").last
+      cards = cards.to_i
+      next if card_sets[id].blank? || card_sets[id]["cards"] == cards
+
+      updates << card_sets[id].merge("cards" => cards, "updated_at" => Time.current)
+    end
+    updates
   end
 end
