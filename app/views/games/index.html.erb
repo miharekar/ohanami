@@ -1,16 +1,34 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="inline-block px-3 py-2 mb-5 font-medium text-green-500 rounded-lg bg-green-50" id="notice"><%= notice %></p>
-  <% end %>
-  <div class="flex items-center justify-between">
-    <h1 class="text-4xl font-bold">Games</h1>
-    <%= link_to "New game", new_game_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-  <ul id="games" class="min-w-full">
-    <% @games.each do |game| %>
-      <li>
-        <%= link_to game.name, game_path(game) %>
-      </li>
-    <% end %>
-  </ul>
+<div class="container px-4 py-8 mx-auto">
+  <header class="mb-8 text-center">
+    <h1 class="mb-4 text-4xl font-bold text-gray-800">ohanami.app Score Tracker</h1>
+    <p class="text-xl text-gray-600">Enhance Your Ohanami Gaming Experience</p>
+  </header>
+  <section class="mb-12">
+    <div class="text-center">
+      <p class="mb-6 text-lg text-gray-700">
+        Tired of the hassle of manually calculating scores in Ohanami? Our app is here to save the day! With the ohanami.app Score Tracker, enjoy a smooth, automated scoring experience that lets you focus on the strategy and fun of the game, without the math.
+      </p>
+      <%= link_to "Start a New Game", new_game_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-lg" %>
+    </div>
+  </section>
+  <section class="mb-12">
+    <h2 class="mb-6 text-3xl font-bold text-center text-gray-800">Why Choose ohanami.app?</h2>
+    <div class="grid gap-6 text-center md:grid-cols-3">
+      <div class="p-6 bg-white rounded-lg">
+        <h3 class="mb-3 text-xl font-semibold">Automated Score Tracking</h3>
+        <p>Instantly calculate scores for each round with ease, ensuring accuracy and efficiency.</p>
+      </div>
+      <div class="p-6 bg-white rounded-lg">
+        <h3 class="mb-3 text-xl font-semibold">Manage Card Sets</h3>
+        <p>Keep track of your card sets and their colors throughout the game, all in one place.</p>
+      </div>
+      <div class="p-6 bg-white rounded-lg">
+        <h3 class="mb-3 text-xl font-semibold">Real-Time Progress</h3>
+        <p>View your round-by-round progress and strategize accordingly for a competitive edge.</p>
+      </div>
+    </div>
+  </section>
+  <footer class="text-sm text-center text-gray-600">
+    Contribute on <a href="https://github.com/miharekar/ohanami" class="underline">GitHub</a>.
+  </footer>
 </div>

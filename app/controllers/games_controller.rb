@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[show edit update destroy]
+  before_action :set_game, only: %i[show update]
 
   def index
     @games = Game.order(created_at: :desc)
@@ -14,9 +14,6 @@ class GamesController < ApplicationController
     @game = Game.new
   end
 
-  def edit
-  end
-
   def create
     @game = Game.new(game_params)
 
@@ -27,7 +24,7 @@ class GamesController < ApplicationController
     end
 
     if @game.save
-      redirect_to @game, notice: "Game was successfully created."
+      redirect_to @game
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,11 +39,6 @@ class GamesController < ApplicationController
     end
 
     redirect_to @game, notice: "Game was successfully updated.", status: :see_other
-  end
-
-  def destroy
-    @game.destroy!
-    redirect_to games_url, notice: "Game was successfully destroyed.", status: :see_other
   end
 
   private

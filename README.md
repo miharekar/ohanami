@@ -1,24 +1,17 @@
-# README
+Open your browser and navigate to `https://ohanami.app/` to start using the app.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## About
 
-Things you may want to cover:
+I got tired of keeping track of the score for the card game [Ohanami](https://pandasaurusgames.com/products/ohanami) by hand, so I created this app to do it for me.
 
-* Ruby version
+## Contributing
 
-* System dependencies
+Contributions to the Ohanami Score Tracker are welcome!
 
-* Configuration
+## License
 
-* Database creation
+This project is licensed under the [MIT License](LICENSE).
 
-* Database initialization
+## Acknowledgements
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A special thanks to the creators of [Ohanami](https://pandasaurusgames.com/products/ohanami) for creating the card game.
