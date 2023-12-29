@@ -1,5 +1,7 @@
-  
 <div>
   <%= render @game %>
-  <%= link_to "New game", new_game_path, class: "mt-20 mx-4 rounded text-center py-3 px-5 bg-gray-500 text-white block font-medium" %>
+  <div class="flex justify-center my-5">
+    <%= link_to "Start a new game", new_game_path, class: "rounded-md bg-purple-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600" %>
+  </div>
 </div>
+<%= render "shared/footer" %>

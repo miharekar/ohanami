@@ -13,7 +13,7 @@
             Our app is here to save the day! With the ohanami.app Score Tracker, enjoy a smooth, automated scoring experience that lets you focus on the strategy and fun of the game, without the math.
           </p>
           <div class="flex items-center justify-center mt-10 gap-x-6">
-            <%= link_to "Start a New Game", new_game_path, class: "rounded-md bg-purple-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600" %>
+            <%= link_to "Start a New Game", new_game_path, class: "rounded-md bg-purple-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600" %>
           </div>
         </div>
       </div>
@@ -39,8 +39,4 @@
     </div>
   </div>
 </main>
-<footer class="my-6 text-sm text-center text-gray-600 ">
-  © <%= Date.today.year %>
-  <a href="https://mr.si/" class="underline hover:no-underline" target="_blank">Miha Rekar</a>.
-  Contribute on <a href="https://github.com/miharekar/ohanami" class="underline hover:no-underline" target="_blank">GitHub</a>.
-</footer>
+<%= render "shared/footer" %>
