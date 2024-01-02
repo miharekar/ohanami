@@ -59,7 +59,8 @@ class GamesController < ApplicationController
 
       id = key.split("card_sets_").last
       cards = cards.to_i
-      next if card_sets[id].blank? || card_sets[id]["cards"] == cards
+      old_cards = params[:game]["old_card_sets_#{id}"].to_i
+      next if card_sets[id].blank? || card_sets[id]["cards"] == cards || old_cards == cards
 
       updates << card_sets[id].merge("cards" => cards, "updated_at" => Time.current)
     end

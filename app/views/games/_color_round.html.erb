@@ -24,5 +24,6 @@
     <% "bg-pink-50 focus:ring-pink-600" %>
   <% end %>
   <%= form.number_field "card_sets_#{card_set.id}", id: "card_sets_input_#{card_set.id}", value: card_set&.cards, class: "block w-full text-center border-0 focus:ring-2 focus:ring-inset #{color_classes}", min: 0 %>
+  <%= form.hidden_field "old_card_sets_#{card_set.id}", id: "old_card_sets_input_#{card_set.id}", value: card_set&.cards %>
 </div>
 <% end %>
