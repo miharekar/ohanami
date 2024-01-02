@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="auto-form-submitter"
 export default class extends Controller {
   static targets = ["form"]
 
@@ -10,6 +9,12 @@ export default class extends Controller {
         if (event.data === null) return
 
         this.formTarget.requestSubmit()
+      })
+
+      element.addEventListener("focus", (event) => {
+        if (event.target.value !== "0") return
+
+        event.target.value = ""
       })
     })
   }

@@ -8,7 +8,7 @@
     <br>
     <%= game.created_at.strftime("%B %d, %Y %H:%M") %>
   </h1>
-  <%= form_with(model: game, data: { controller: "auto-form-submitter", auto_form_submitter_target: "form"}) do |form| %>
+  <%= form_with(model: game, data: { controller: "game-input", game_input_target: "form"}) do |form| %>
     <div class="grid grid-cols-<%= columns %>">
       <div></div>
       <% game.players.each do |player| %>
