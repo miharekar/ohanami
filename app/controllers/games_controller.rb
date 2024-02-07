@@ -13,6 +13,17 @@ class GamesController < ApplicationController
   end
 
   def new
+    if existing_game
+      game = existing_game.dup
+      iteration = game.name[/\((\d+)\)\z/, 1].to_i
+      game.name = iteration.zero? ? "#{existing_game.name} (2)" : existing_game.name.sub(/\(#{iteration}\)\z/, "(#{iteration + 1})")
+
+      if game.save
+        game.players = existing_game.players.map(&:dup)
+        return redirect_to game
+      end
+    end
+
     @game = Game.new
   end
 
@@ -49,6 +60,12 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:name)
+  end
+
+  memo_wise def existing_game
+    return if params[:from].blank?
+
+    Game.find_by(id: params[:from])
   end
 
   memo_wise def card_set_updates
