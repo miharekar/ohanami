@@ -2,6 +2,7 @@
 
 ---
 options:
+  jemalloc: true
   link: false
   parallel: true
   packages:
