@@ -4,6 +4,7 @@ source "https://rubygems.org"
 
 ruby "3.3.0"
 
+gem "bootsnap", require: false
 gem "importmap-rails"
 gem "inline_svg"
 gem "litestack"
@@ -16,8 +17,6 @@ gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "turbo-rails", "~> 2.0.0.pre.beta.2"
 gem "uuid7"
-
-gem "bootsnap", require: false
 
 group :development, :test do
   gem "debug"
