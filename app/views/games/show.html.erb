@@ -1,8 +1,45 @@
 <div>
   <%= render @game %>
   <div class="flex flex-col justify-center space-y-4 my-14 sm:flex-row sm:space-y-0 sm:space-x-10">
-    <%= link_to "Start another game with the same players", new_game_path(from: @game.id), class: "sm:rounded-md text-center bg-blue-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" %>
+    <%= link_to "Start another game with the same players", new_game_path(from: @game.id), data: {turbo_prefetch: false}, class: "sm:rounded-md text-center bg-blue-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" %>
     <%= link_to "Start a brand new game", new_game_path, class: "sm:rounded-md text-center bg-green-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600" %>
   </div>
 </div>
+<% if !Current.user %>
+  <div class="max-w-3xl mx-auto text-base leading-7 text-gray-700">
+    <h2 class="px-2 text-xl font-bold tracking-tight text-gray-900 sm:px-0">
+      Want to keep track of your games?
+    </h2>
+    <p class="mt-6 space-y-6">
+      <%= link_to "Create an account", sign_up_path, class: "font-semibold underline hover:no-underline" %> or
+      <%= link_to "sign in", sign_in_path, class: "font-semibold underline hover:no-underline" %>
+      to save all your games.
+    </p>
+  </div>
+<% elsif @previous_games.any? %>
+  <div class="max-w-xl mx-auto text-base leading-7 text-gray-700">
+    <h2 class="px-2 text-xl font-bold tracking-tight text-gray-900 sm:px-0">
+      Previous games
+    </h2>
+    <ul role="list" class="mt-6 space-y-6">
+      <% @previous_games.each.with_index(1) do |game, i| %>
+        <li class="relative flex gap-x-4">
+          <% if i < @previous_games.size %>
+            <div class="absolute top-0 left-0 flex justify-center w-6 -bottom-6">
+              <div class="w-px bg-gray-200"></div>
+            </div>
+          <% end %>
+          <div class="relative flex items-center justify-center flex-none w-6 h-6 bg-white">
+            <div class="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300"></div>
+          </div>
+          <p class="flex-auto py-0.5 text-xs leading-5 text-gray-500">
+            <%= link_to game.name, game_path(game), class: "font-medium text-gray-900 underline hover:no-underline" %>
+            (<%= game.scores.map { |player, score| "#{player.name}: #{score}" }.join(", ") %>)
+          </p>
+          <%= time_tag game.created_at, "#{time_ago_in_words(game.created_at)} ago", class: "flex-none py-0.5 text-xs leading-5 text-gray-500" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= render "shared/footer" %>
