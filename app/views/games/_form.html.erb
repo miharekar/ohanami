@@ -9,10 +9,6 @@
       </ul>
     </div>
   <% end %>
-  <div class="my-5">
-    <%= form.label :name, "Game Name" %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
   <% 4.times do |i| %>
     <div class="my-5">
       <%= form.label "player_#{i+1}" %>

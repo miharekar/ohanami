@@ -2,10 +2,8 @@
 <!-- Possible span classes: col-span-3 col-span-5 col-span-7 col-span-9 -->
 <% columns = (game.players.size * 2) + 1 %>
 <%= turbo_stream_from game %>
-<div id="<%= dom_id game %>">
+<div id="<%= dom_id game %>" class="my-8">
   <h1 class="mb-4 text-xl font-bold text-center">
-    <%= game.name %>
-    <br>
     <%= game.created_at.strftime("%B %d, %Y %H:%M") %>
   </h1>
   <%= form_with(model: game, data: { controller: "game-input", game_input_target: "form"}) do |form| %>

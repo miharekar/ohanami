@@ -15,9 +15,6 @@ class GamesController < ApplicationController
   def new
     if existing_game
       game = existing_game.dup
-      iteration = game.name[/\((\d+)\)\z/, 1].to_i
-      game.name = iteration.zero? ? "#{existing_game.name} (2)" : existing_game.name.sub(/\(#{iteration}\)\z/, "(#{iteration + 1})")
-
       if game.save
         game.players = existing_game.players.map(&:dup)
         return redirect_to game
