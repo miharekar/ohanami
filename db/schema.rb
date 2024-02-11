@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_10_135018) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_11_164214) do
   create_table "card_sets", id: { type: :binary, limit: 16 }, force: :cascade do |t|
     t.binary "player_id", limit: 16, null: false
     t.integer "round"
@@ -38,6 +38,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_135018) do
     t.index ["id"], name: "index_players_on_id", unique: true
   end
 
+  create_table "sessions", id: { type: :binary, limit: 16 }, force: :cascade do |t|
+    t.binary "user_id", limit: 16, null: false
+    t.string "user_agent"
+    t.string "ip_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_sessions_on_id", unique: true
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "users", id: { type: :binary, limit: 16 }, force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.boolean "verified", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["id"], name: "index_users_on_id", unique: true
+  end
+
   add_foreign_key "card_sets", "players"
   add_foreign_key "players", "games"
+  add_foreign_key "sessions", "users"
 end

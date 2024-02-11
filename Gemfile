@@ -4,6 +4,7 @@ source "https://rubygems.org"
 
 ruby "3.3.0"
 
+gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
 gem "importmap-rails"
 gem "inline_svg"
@@ -25,6 +26,7 @@ end
 
 group :development do
   gem "annotate"
+  gem "authentication-zero"
   gem "benchmark-ips"
   gem "dockerfile-rails"
   gem "letter_opener"
