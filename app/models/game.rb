@@ -5,10 +5,17 @@ class Game < ApplicationRecord
 
   COLOR_ROUNDS = {1 => %i[blue], 2 => %i[blue green], 3 => %i[blue green gray pink]}.freeze
 
+  belongs_to :owner, class_name: "User", foreign_key: :user_id, inverse_of: :games, optional: true
   has_many :players, dependent: :destroy
   has_many :card_sets, through: :players
 
+  scope :previous, ->(current) { where("created_at < ?", current.created_at).order(created_at: :desc) }
+
   broadcasts_refreshes
+
+  def name
+    created_at.strftime("%B %d, %Y %H:%M")
+  end
 
   def prepare_color_rounds!
     card_set_attributes = COLOR_ROUNDS.flat_map do |round, colors|
@@ -25,6 +32,14 @@ class Game < ApplicationRecord
     card_sets.index_by { |c| [c.round, c.color, c.player_id] }
   end
 
+  memo_wise def scores
+    players.to_h do |player|
+      [player, score_by_player_id[player.id]]
+    end
+  end
+
+  private
+
   memo_wise def score_by_player_id
     card_sets.group_by(&:player_id).transform_values { |card_sets| card_sets.sum(&:value) }
   end
@@ -37,8 +52,14 @@ end
 #  id         :binary(16)       not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :binary(16)
 #
 # Indexes
 #
-#  index_games_on_id  (id) UNIQUE
+#  index_games_on_id       (id) UNIQUE
+#  index_games_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  user_id  (user_id => users.id)
 #

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :games, foreign_key: :user_id, inverse_of: :owner, dependent: :nullify
+
   has_secure_password
 
   generates_token_for :email_verification, expires_in: 2.days do

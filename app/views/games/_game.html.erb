@@ -3,8 +3,8 @@
 <% columns = (game.players.size * 2) + 1 %>
 <%= turbo_stream_from game %>
 <div id="<%= dom_id game %>" class="my-8">
-  <h1 class="mb-4 text-xl font-bold text-center">
-    <%= game.created_at.strftime("%B %d, %Y %H:%M") %>
+  <h1 class="mb-8 text-2xl font-bold text-center">
+    <%= game.name %>
   </h1>
   <%= form_with(model: game, data: { controller: "game-input", game_input_target: "form"}) do |form| %>
     <div class="grid grid-cols-<%= columns %>">
@@ -24,9 +24,9 @@
       <%= render "color_round", form: form, game: game, color: "gray", round: 3 %>
       <%= render "color_round", form: form, game: game, color: "pink", round: 3 %>
       <div></div>
-      <% game.players.each do |player| %>
+      <% game.scores.each do |player, score| %>
         <div class="col-span-2 text-lg font-semibold text-center" id="player-<%= player.id %>-score">
-          <%= game.score_by_player_id[player.id] %>
+          <%= score %>
         </div>
       <% end %>
     </div>

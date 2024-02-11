@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_11_164214) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_11_184633) do
   create_table "card_sets", id: { type: :binary, limit: 16 }, force: :cascade do |t|
     t.binary "player_id", limit: 16, null: false
     t.integer "round"
@@ -26,7 +26,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_11_164214) do
   create_table "games", id: { type: :binary, limit: 16 }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.binary "user_id", limit: 16
     t.index ["id"], name: "index_games_on_id", unique: true
+    t.index ["user_id"], name: "index_games_on_user_id"
   end
 
   create_table "players", id: { type: :binary, limit: 16 }, force: :cascade do |t|
@@ -59,6 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_11_164214) do
   end
 
   add_foreign_key "card_sets", "players"
+  add_foreign_key "games", "users"
   add_foreign_key "players", "games"
   add_foreign_key "sessions", "users"
 end

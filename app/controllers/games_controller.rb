@@ -10,11 +10,13 @@ class GamesController < ApplicationController
   end
 
   def show
+    @previous_games = Current.user&.games&.previous(@game)
   end
 
   def new
     if existing_game
       game = existing_game.dup
+      game.owner = Current.user
       if game.save
         game.players = existing_game.players.map(&:dup)
         return redirect_to game
@@ -25,7 +27,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new(game_params)
+    @game = Game.new({owner: Current.user})
 
     params[:game].each do |key, name|
       next if !key.start_with?("player_") || name.blank?
@@ -53,10 +55,6 @@ class GamesController < ApplicationController
 
   def set_game
     @game = Game.find(params[:id])
-  end
-
-  def game_params
-    params.require(:game).permit(:name)
   end
 
   memo_wise def existing_game
