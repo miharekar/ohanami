@@ -35,8 +35,14 @@ end
 #  id         :binary(16)       not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :binary(16)
 #
 # Indexes
 #
-#  index_games_on_id  (id) UNIQUE
+#  index_games_on_id       (id) UNIQUE
+#  index_games_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  user_id  (user_id => users.id)
 #
