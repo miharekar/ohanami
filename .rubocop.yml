@@ -29,6 +29,8 @@ Layout/SpaceInsideArrayLiteralBrackets:
   EnforcedStyle: no_space
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: true
 Performance/AncestorsInclude:
   Enabled: true
 Performance/ArraySemiInfiniteRangeSlice:
@@ -66,7 +68,10 @@ Performance/TimesMap:
 Rails/SaveBang:
   Enabled: false
 Style/FrozenStringLiteralComment:
-  Enabled: true
+  EnforcedStyle: never
+Style/HashSyntax:
+  EnforcedShorthandSyntax: always
+  EnforcedStyle: ruby19
 Style/IfUnlessModifier:
   Enabled: true
 Style/Send:

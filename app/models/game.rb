@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Game < ApplicationRecord
   prepend MemoWise
 
@@ -13,7 +11,7 @@ class Game < ApplicationRecord
   def prepare_color_rounds!
     card_set_attributes = COLOR_ROUNDS.flat_map do |round, colors|
       colors.product(players).map do |color, player|
-        {id: UUID7.generate, round: round, color: color, player_id: player.id, created_at: Time.current, updated_at: Time.current}
+        {id: UUID7.generate, round:, color:, player_id: player.id, created_at: Time.current, updated_at: Time.current}
       end
     end
 

@@ -1,21 +1,8 @@
 # syntax = docker/dockerfile:1
 
-FROM debian:bullseye-slim as base
-
-# Install dependencies for building Ruby
-RUN apt-get update && apt-get install -y build-essential wget autoconf
-
-# Install ruby-install for installing Ruby
-RUN wget https://github.com/postmodern/ruby-install/releases/download/v0.9.3/ruby-install-0.9.3.tar.gz \
-  && tar -xzvf ruby-install-0.9.3.tar.gz \
-  && cd ruby-install-0.9.3/ \
-  && make install
-
-# Install Ruby 3.3.0 with the https://github.com/ruby/ruby/pull/9371 patch
-RUN ruby-install -p https://github.com/ruby/ruby/pull/9371.diff ruby 3.3.0
-
-# Make the Ruby binary available on the PATH
-ENV PATH="/opt/rubies/ruby-3.3.0/bin:${PATH}"
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+ARG RUBY_VERSION=3.3.5
+FROM ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here
 WORKDIR /rails
@@ -31,7 +18,7 @@ RUN gem update --system --no-document && \
   gem install -N bundler
 
 # Throw-away build stage to reduce size of final image
-FROM base as build
+FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
@@ -70,13 +57,9 @@ RUN groupadd --system --gid 1000 rails && \
   chown -R 1000:1000 db log storage tmp
 USER 1000:1000
 
-# Deployment options
-ENV LD_PRELOAD="libjemalloc.so.2" \
-  MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true"
-
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-# Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
-CMD ["./bin/rails", "server"]
+# Start server via Thruster by default, this can be overwritten at runtime
+EXPOSE 80
+CMD ["./bin/thrust", "./bin/rails", "server"]

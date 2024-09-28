@@ -3,8 +3,8 @@
 ---
 options:
   jemalloc: true
-  link: false
   parallel: true
+  thruster: true
   packages:
     build:
     - git

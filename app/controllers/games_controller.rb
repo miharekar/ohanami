@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class GamesController < ApplicationController
   prepend MemoWise
 
@@ -30,7 +28,7 @@ class GamesController < ApplicationController
     params[:game].each do |key, name|
       next if !key.start_with?("player_") || name.blank?
 
-      @game.players << Player.new(name: name)
+      @game.players << Player.new(name:)
     end
 
     if @game.players.size > 1 && @game.save
