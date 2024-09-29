@@ -17,7 +17,7 @@ servers:
 # Set ssl: false if using something like Cloudflare to terminate SSL (but keep host!).
 proxy:
   ssl: true
-  host: ohanami.app
+  host: ohanami.apps
 
 # Credentials for your image host.
 registry:
