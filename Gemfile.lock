@@ -103,8 +103,13 @@ GEM
     drb (2.2.1)
     ed25519 (1.3.0)
     erubi (1.13.0)
+    et-orbi (1.2.11)
+      tzinfo
     freezolite (0.5.0)
       require-hooks (~> 0.2)
+    fugit (1.11.1)
+      et-orbi (~> 1, >= 1.2.11)
+      raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -138,13 +143,6 @@ GEM
       childprocess (~> 5.0)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
-    litestack (0.4.4)
-      erubi (~> 1)
-      oj (~> 3)
-      rack (~> 3)
-      rackup (~> 2)
-      sqlite3 (>= 1.6.0, < 2.0.0)
-      tilt (~> 2)
     logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -186,9 +184,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
-    oj (3.16.6)
-      bigdecimal (>= 3.0)
-      ostruct (>= 0.2)
     ostruct (0.6.0)
     parallel (1.26.3)
     parser (3.3.5.0)
@@ -205,6 +200,7 @@ GEM
     public_suffix (6.0.1)
     puma (6.4.3)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.7)
     rack-session (2.0.0)
@@ -291,13 +287,29 @@ GEM
     singed (0.2.2)
       colorize
       stackprof (>= 0.2.13)
+    solid_cable (3.0.2)
+      actioncable (>= 7.2)
+      activejob (>= 7.2)
+      activerecord (>= 7.2)
+      railties (>= 7.2)
+    solid_cache (1.0.6)
+      activejob (>= 7.2)
+      activerecord (>= 7.2)
+      railties (>= 7.2)
+    solid_queue (1.0.0)
+      activejob (>= 7.1)
+      activerecord (>= 7.1)
+      concurrent-ruby (>= 1.3.1)
+      fugit (~> 1.11.0)
+      railties (>= 7.1)
+      thor (~> 1.3.1)
     sorbet-runtime (0.5.11589)
-    sqlite3 (1.7.3-aarch64-linux)
-    sqlite3 (1.7.3-arm-linux)
-    sqlite3 (1.7.3-arm64-darwin)
-    sqlite3 (1.7.3-x86-linux)
-    sqlite3 (1.7.3-x86_64-darwin)
-    sqlite3 (1.7.3-x86_64-linux)
+    sqlite3 (2.1.0-aarch64-linux-gnu)
+    sqlite3 (2.1.0-arm-linux-gnu)
+    sqlite3 (2.1.0-arm64-darwin)
+    sqlite3 (2.1.0-x86-linux-gnu)
+    sqlite3 (2.1.0-x86_64-darwin)
+    sqlite3 (2.1.0-x86_64-linux-gnu)
     sshkit (1.23.1)
       base64
       net-scp (>= 1.1.2)
@@ -308,17 +320,17 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.1)
-    tailwindcss-rails (2.7.6)
+    tailwindcss-rails (2.7.7)
       railties (>= 7.0.0)
-    tailwindcss-rails (2.7.6-aarch64-linux)
+    tailwindcss-rails (2.7.7-aarch64-linux)
       railties (>= 7.0.0)
-    tailwindcss-rails (2.7.6-arm-linux)
+    tailwindcss-rails (2.7.7-arm-linux)
       railties (>= 7.0.0)
-    tailwindcss-rails (2.7.6-arm64-darwin)
+    tailwindcss-rails (2.7.7-arm64-darwin)
       railties (>= 7.0.0)
-    tailwindcss-rails (2.7.6-x86_64-darwin)
+    tailwindcss-rails (2.7.7-x86_64-darwin)
       railties (>= 7.0.0)
-    tailwindcss-rails (2.7.6-x86_64-linux)
+    tailwindcss-rails (2.7.7-x86_64-linux)
       railties (>= 7.0.0)
     thor (1.3.2)
     thruster (0.1.8)
@@ -326,7 +338,6 @@ GEM
     thruster (0.1.8-arm64-darwin)
     thruster (0.1.8-x86_64-darwin)
     thruster (0.1.8-x86_64-linux)
-    tilt (2.4.0)
     timeout (0.4.1)
     turbo-rails (2.0.10)
       actionpack (>= 6.0.0)
@@ -367,7 +378,6 @@ DEPENDENCIES
   inline_svg
   kamal
   letter_opener
-  litestack (~> 0.4.4)
   memo_wise
   propshaft
   puma
@@ -375,6 +385,9 @@ DEPENDENCIES
   rubocop-rails-omakase
   ruby-lsp
   singed
+  solid_cable
+  solid_cache
+  solid_queue
   sqlite3
   stimulus-rails
   tailwindcss-rails
