@@ -5,7 +5,6 @@ ruby "3.3.5"
 gem "freezolite"
 gem "importmap-rails"
 gem "inline_svg"
-gem "kamal", github: "basecamp/kamal"
 gem "litestack", "~> 0.4.4"
 gem "memo_wise"
 gem "propshaft"
@@ -29,6 +28,7 @@ group :development do
   gem "annotate"
   gem "benchmark-ips"
   gem "dockerfile-rails"
+  gem "kamal", require: false
   gem "letter_opener"
   gem "rubocop-rails-omakase", require: false
   gem "ruby-lsp"
