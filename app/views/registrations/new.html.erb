@@ -1,0 +1,45 @@
+<div class="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
+  <div class="w-full max-w-sm space-y-10">
+    <div>
+      <h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900">
+        Sign up for a new account
+      </h2>
+    </div>
+    <p style="color: green"><%= notice %></p>
+    <p style="color: red"><%= alert %></p>
+    <%= form_with(url: sign_up_path, class: "space-y-6") do |form| %>
+      <% if @user.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% @user.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="relative -space-y-px rounded-md shadow-sm">
+        <div class="absolute inset-0 z-10 rounded-md pointer-events-none ring-1 ring-inset ring-gray-300"></div>
+        <div>
+          <%= form.email_field :email, value: @user.email, required: true, autofocus: true, autocomplete: "email", placeholder: "Email address", class: "relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+        <div>
+          <%= form.password_field :password, placeholder: "Password", required: true, autocomplete: "current-password", class: "relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+        <div>
+          <%= form.password_field :password_confirmation, placeholder: "Password confirmation", required: true, autocomplete: "current-password", class: "relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+      <%= form.hidden_field :previous_game_id, value: @previous_game_id %>
+      <div>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          Sign up
+        </button>
+      </div>
+    <% end %>
+    <p class="text-sm leading-6 text-center text-gray-500">
+      Already have an account?
+      <%= link_to "Sign in here", sign_in_path, class: "font-semibold text-indigo-600 hover:text-indigo-500" %>.
+    </p>
+  </div>
+</div>
