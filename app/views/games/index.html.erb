@@ -1,5 +1,4 @@
 <main class="isolate">
-  <!-- Hero section -->
   <div class="relative pt-14">
     <div class="absolute inset-x-0 overflow-hidden -top-40 -z-10 transform-gpu blur-3xl sm:-top-80">
       <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
@@ -22,21 +21,58 @@
       <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
     </div>
   </div>
-  <div class="mb-12">
-    <div class="grid gap-6 text-center md:grid-cols-3">
-      <div class="p-6 rounded-lg">
-        <h3 class="mb-3 text-xl font-semibold">Automated Score Tracking</h3>
-        <p>Instantly calculate scores for each round with ease, ensuring accuracy and efficiency.</p>
-      </div>
-      <div class="p-6 rounded-lg">
-        <h3 class="mb-3 text-xl font-semibold">Manage Card Sets</h3>
-        <p>Keep track of your card sets and their colors throughout the game, all in one place.</p>
-      </div>
-      <div class="p-6 rounded-lg">
-        <h3 class="mb-3 text-xl font-semibold">Real-Time Progress</h3>
-        <p>View your round-by-round progress and strategize accordingly for a competitive edge.</p>
+  <% if Current.user && Current.user.games.any? %>
+    <div class="max-w-xl pb-12 mx-auto text-base leading-7 text-gray-700">
+      <h2 class="px-2 text-xl font-bold tracking-tight text-gray-900 sm:px-0">
+        Your Previous Games
+      </h2>
+      <ul role="list" class="mt-6 space-y-6">
+        <% Current.user.games.order(created_at: :desc).limit(5).each.with_index(1) do |game, i| %>
+          <li class="relative flex gap-x-4">
+            <% if i < 5 %>
+              <div class="absolute top-0 left-0 flex justify-center w-6 -bottom-6">
+                <div class="w-px bg-gray-200"></div>
+              </div>
+            <% end %>
+            <div class="relative flex items-center justify-center flex-none w-6 h-6 bg-white">
+              <div class="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300"></div>
+            </div>
+            <p class="flex-auto py-0.5 text-xs leading-5 text-gray-500">
+              <%= link_to game.name, game_path(game), class: "font-medium text-gray-900 underline hover:no-underline" %>
+              (<%= game.scores.map { |player, score| "#{player.name}: #{score}" }.join(", ") %>)
+            </p>
+            <%= time_tag game.created_at, "#{time_ago_in_words(game.created_at)} ago", class: "flex-none py-0.5 text-xs leading-5 text-gray-500" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% else %>
+    <div class="pb-24 mx-auto">
+      <div class="relative px-6 py-24 text-center bg-purple-900 shadow-2xl">
+        <h2 class="text-4xl font-semibold tracking-tight text-white text-balance sm:text-5xl">Want to keep track of all your games?</h2>
+        <p class="max-w-xl mx-auto mt-6 text-lg leading-8 text-purple-100 text-pretty">Create an account to see your personal gaming history, track your progress, and see how your scores change over time.</p>
+        <div class="flex items-center justify-center mt-10 gap-x-6">
+          <%= link_to "Create an account", sign_up_path, class: "px-3.5 py-2.5 text-sm font-semibold text-purple-900 bg-white rounded-md shadow-sm hover:bg-purple-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" %>
+          <%= link_to "Sign in to existing account", sign_in_path, class: "text-sm font-semibold leading-6 text-white" %>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="mb-12">
+      <div class="grid gap-6 text-center md:grid-cols-3">
+        <div class="p-6 rounded-lg">
+          <h3 class="mb-3 text-xl font-semibold">Automated Score Tracking</h3>
+          <p>Instantly calculate scores for each round with ease, ensuring accuracy and efficiency.</p>
+        </div>
+        <div class="p-6 rounded-lg">
+          <h3 class="mb-3 text-xl font-semibold">Manage Card Sets</h3>
+          <p>Keep track of your card sets and their colors throughout the game, all in one place.</p>
+        </div>
+        <div class="p-6 rounded-lg">
+          <h3 class="mb-3 text-xl font-semibold">Real-Time Progress</h3>
+          <p>View your round-by-round progress and strategize accordingly for a competitive edge.</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </main>
 <%= render "shared/footer" %>

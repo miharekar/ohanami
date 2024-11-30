@@ -6,15 +6,15 @@
   </div>
 </div>
 <% if !Current.user %>
-  <div class="max-w-3xl mx-auto text-base leading-7 text-gray-700">
-    <h2 class="px-2 text-xl font-bold tracking-tight text-gray-900 sm:px-0">
-      Want to keep track of your games?
-    </h2>
-    <p class="mt-6 space-y-6">
-      <%= link_to "Create an account", sign_up_path, class: "font-semibold underline hover:no-underline" %> or
-      <%= link_to "sign in", sign_in_path, class: "font-semibold underline hover:no-underline" %>
-      to save all your games.
-    </p>
+  <div class="py-24 mx-auto">
+    <div class="relative px-6 py-24 text-center bg-purple-900 shadow-2xl">
+      <h2 class="text-4xl font-semibold tracking-tight text-white text-balance sm:text-5xl">Want to keep track of your games?</h2>
+      <p class="max-w-xl mx-auto mt-6 text-lg leading-8 text-purple-100 text-pretty">Create an account to see your personal gaming history, track your progress, and see how your scores change over time.</p>
+      <div class="flex items-center justify-center mt-10 gap-x-6">
+        <%= link_to "Create an account", sign_up_path, class: "px-3.5 py-2.5 text-sm font-semibold text-purple-900 bg-white rounded-md shadow-sm hover:bg-purple-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" %>
+        <%= link_to "Sign in to existing account", sign_in_path, class: "text-sm font-semibold leading-6 text-white" %>
+      </div>
+    </div>
   </div>
 <% elsif @previous_games.any? %>
   <div class="max-w-xl mx-auto text-base leading-7 text-gray-700">
