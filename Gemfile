@@ -28,7 +28,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "annotate"
+  gem "annotaterb"
   gem "benchmark-ips"
   gem "dockerfile-rails"
   gem "kamal", require: false
