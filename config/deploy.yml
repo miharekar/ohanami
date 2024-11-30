@@ -7,7 +7,7 @@ image: mrfoto/ohanami
 # Deploy to these servers.
 servers:
   web:
-    - 49.13.61.29
+    - misc
   # job:
   #   hosts:
   #     - 192.168.0.1
