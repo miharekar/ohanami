@@ -15,7 +15,7 @@ class RegistrationsController < ApplicationController
       if params[:previous_game_id]
         game = Game.find_by(id: params[:previous_game_id])
         if game && game.owner.nil?
-          params[:previous_game_id]
+          game.update(owner: @user)
           redirect_path = game_path(game)
         end
       end
