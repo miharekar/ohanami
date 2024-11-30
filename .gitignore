@@ -8,7 +8,6 @@
 /.bundle
 
 # Ignore all environment files (except templates).
-/.kamal/secrets*
 
 # Ignore all logfiles and tempfiles.
 /log/*
