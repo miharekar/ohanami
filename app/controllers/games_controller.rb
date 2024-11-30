@@ -40,6 +40,7 @@ class GamesController < ApplicationController
     end
   end
 
+  # rubocop:disable Rails/SkipsModelValidations
   def update
     if card_set_updates.any?
       CardSet.upsert_all(card_set_updates, unique_by: :id)
@@ -48,6 +49,7 @@ class GamesController < ApplicationController
 
     redirect_to @game
   end
+  # rubocop:enable Rails/SkipsModelValidations
 
   private
 

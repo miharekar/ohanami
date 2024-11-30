@@ -7,7 +7,7 @@ class Game < ApplicationRecord
   has_many :players, dependent: :destroy
   has_many :card_sets, through: :players
 
-  scope :previous, ->(current) { where("created_at < ?", current.created_at).order(created_at: :desc) }
+  scope :previous, ->(current) { where(created_at: ...current.created_at).order(created_at: :desc) }
 
   broadcasts_refreshes
 
@@ -22,7 +22,7 @@ class Game < ApplicationRecord
       end
     end
 
-    CardSet.upsert_all(card_set_attributes, unique_by: %i[round color player_id])
+    CardSet.upsert_all(card_set_attributes, unique_by: %i[round color player_id]) # rubocop:disable Rails/SkipsModelValidations
   end
 
   memo_wise def card_sets_by_round_and_color_and_player
@@ -31,8 +31,8 @@ class Game < ApplicationRecord
   end
 
   memo_wise def scores
-    players.to_h do |player|
-      [player, score_by_player_id[player.id]]
+    players.index_with do |player|
+      score_by_player_id[player.id]
     end
   end
 

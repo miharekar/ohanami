@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :games, foreign_key: :user_id, inverse_of: :owner, dependent: :nullify
+  has_many :games, inverse_of: :owner, dependent: :nullify
 
   has_secure_password
 

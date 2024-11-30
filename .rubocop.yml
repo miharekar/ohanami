@@ -7,9 +7,11 @@ require:
 
 AllCops:
   NewCops: enable
+  DisabledByDefault: false
   TargetRubyVersion: 3.3
   Exclude:
     - db/schema.rb
+    - db/migrate/*
     - bin/*
 
 Bundler/OrderedGems:
@@ -25,47 +27,45 @@ Layout/IndentationConsistency:
   EnforcedStyle: normal
 Layout/IndentationWidth:
   Enabled: true
+Layout/LineLength:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
 Layout/SpaceInsideArrayLiteralBrackets:
   EnforcedStyle: no_space
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 Layout/SpaceInsidePercentLiteralDelimiters:
   Enabled: true
-Performance/AncestorsInclude:
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Minitest/AssertPredicate:
+  Enabled: false
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: false
+Minitest/MultipleAssertions:
+  Enabled: false
+Naming/AccessorMethodName:
+  Enabled: false
+Performance:
   Enabled: true
-Performance/ArraySemiInfiniteRangeSlice:
+Rails:
   Enabled: true
-Performance/CaseWhenSplat:
-  Enabled: true
-Performance/Casecmp:
-  Enabled: true
-Performance/CollectionLiteralInLoop:
-  Enabled: true
-Performance/DeletePrefix:
-  Enabled: true
-Performance/DeleteSuffix:
-  Enabled: true
-Performance/IoReadlines:
-  Enabled: true
-Performance/MapCompact:
-  Enabled: true
-Performance/MethodObjectAsBlock:
-  Enabled: true
-Performance/OpenStruct:
-  Enabled: true
-Performance/RedundantBlockCall:
-  Enabled: true
-Performance/RedundantEqualityComparisonBlock:
-  Enabled: true
-Performance/SelectMap:
-  Enabled: true
-Performance/StringInclude:
-  Enabled: true
-Performance/Sum:
-  Enabled: true
-Performance/TimesMap:
-  Enabled: true
-Rails/SaveBang:
+Rails/I18nLocaleTexts:
+  Enabled: false
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
@@ -74,8 +74,12 @@ Style/HashSyntax:
   EnforcedStyle: ruby19
 Style/IfUnlessModifier:
   Enabled: true
+Style/NumericLiterals:
+  Enabled: false
 Style/Send:
   Enabled: true
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
 Style/SymbolArray:
   Enabled: true
 Style/WordArray:
