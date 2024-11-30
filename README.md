@@ -6,6 +6,8 @@ I got tired of keeping track of the score for the card game [Ohanami](https://bo
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L4L5ALCAJ)
 
+Application monitoring is sponsored by [AppSignal](https://appsignal.com/).
+
 ## Contributing
 
 Contributions to the Ohanami Score Tracker are welcome!
