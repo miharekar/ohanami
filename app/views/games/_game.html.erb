@@ -25,8 +25,8 @@
       <%= render "color_round", form: form, game: game, color: "pink", round: 3 %>
       <div></div>
       <% game.scores.each do |player, score| %>
-        <div class="col-span-2 text-lg font-semibold text-center" id="player-<%= player.id %>-score">
-          <%= score %>
+        <div class="col-span-2 text-xl font-semibold text-center" id="player-<%= player.id %>-score">
+          <%= number_field_tag "score_display_#{player.id}", score, class: "block w-full text-xl text-center border-0", disabled: true %>
         </div>
       <% end %>
     </div>
