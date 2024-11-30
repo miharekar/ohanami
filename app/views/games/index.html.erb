@@ -27,7 +27,7 @@
         Your Previous Games
       </h2>
       <ul role="list" class="mt-6 space-y-6">
-        <% Current.user.games.order(created_at: :desc).limit(5).each.with_index(1) do |game, i| %>
+        <% @previous_games.each.with_index(1) do |game, i| %>
           <li class="relative flex gap-x-4">
             <% if i < 5 %>
               <div class="absolute top-0 left-0 flex justify-center w-6 -bottom-6">

@@ -4,11 +4,15 @@ class GamesController < ApplicationController
   before_action :set_game, only: %i[show update]
 
   def index
-    @games = Game.order(created_at: :desc)
+    return unless Current.user
+
+    @previous_games = Current.user.games.order(created_at: :desc).limit(20)
   end
 
   def show
-    @previous_games = Current.user&.games&.previous(@game)
+    return unless Current.user
+
+    @previous_games = Current.user.games.previous(@game).limit(20)
   end
 
   def new
