@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "3.3.5"
 
+gem "bcrypt"
+gem "bootsnap", require: false
 gem "freezolite"
 gem "importmap-rails"
 gem "inline_svg"
@@ -18,8 +20,6 @@ gem "tailwindcss-rails"
 gem "thruster"
 gem "turbo-rails"
 gem "uuid7"
-
-gem "bootsnap", require: false
 
 group :development, :test do
   gem "debug"
