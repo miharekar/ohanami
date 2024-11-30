@@ -22,7 +22,6 @@ class RegistrationsController < ApplicationController
       session_record = @user.sessions.create!
       cookies.signed.permanent[:session_token] = {value: session_record.id, httponly: true}
 
-      send_email_verification
       redirect_to redirect_path, notice: "Welcome! You have signed up successfully"
     else
       @previous_game_id = params[:previous_game_id]
@@ -34,9 +33,5 @@ class RegistrationsController < ApplicationController
 
   def user_params
     params.permit(:email, :password, :password_confirmation)
-  end
-
-  def send_email_verification
-    UserMailer.with(user: @user).email_verification.deliver_later
   end
 end
