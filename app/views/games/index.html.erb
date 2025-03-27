@@ -12,7 +12,7 @@
             Our app is here to save the day! With the ohanami.app Score Tracker, enjoy a smooth, automated scoring experience that lets you focus on the strategy and fun of the game, without the math.
           </p>
           <div class="flex items-center justify-center mt-10 gap-x-6">
-            <%= link_to "Start a New Game", new_game_path, class: "rounded-md bg-purple-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600" %>
+            <%= link_to "Start a New Game", new_game_path, class: "rounded-sm bg-purple-600 px-3.5 py-2.5 font-semibold text-white shadow-xs hover:bg-purple-500 focus-visible:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600" %>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
               </div>
             <% end %>
             <div class="relative flex items-center justify-center flex-none w-6 h-6 bg-white">
-              <div class="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300"></div>
+              <div class="h-1.5 w-1.5 rounded-sm bg-gray-100 ring-1 ring-gray-300"></div>
             </div>
             <p class="flex-auto py-0.5 text-xs leading-5 text-gray-500">
               <%= link_to game.name, game_path(game), class: "font-medium text-gray-900 underline hover:no-underline" %>
@@ -46,28 +46,28 @@
         <% end %>
       </ul>
     </div>
-  <% else %>
+  <% elsif !Current.user %>
     <div class="pb-24 mx-auto">
       <div class="relative px-6 py-24 text-center bg-purple-900 shadow-2xl">
         <h2 class="text-4xl font-semibold tracking-tight text-white text-balance sm:text-5xl">Want to keep track of all your games?</h2>
         <p class="max-w-xl mx-auto mt-6 text-lg leading-8 text-purple-100 text-pretty">Create an account to see your personal gaming history, track your progress, and see how your scores change over time.</p>
         <div class="flex items-center justify-center mt-10 gap-x-6">
-          <%= link_to "Create an account", sign_up_path, class: "px-3.5 py-2.5 text-sm font-semibold text-purple-900 bg-white rounded-md shadow-sm hover:bg-purple-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" %>
+          <%= link_to "Create an account", sign_up_path, class: "px-3.5 py-2.5 text-sm font-semibold text-purple-900 bg-white rounded-sm shadow-xs hover:bg-purple-50 focus-visible:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" %>
           <%= link_to "Sign in to existing account", sign_in_path, class: "text-sm font-semibold leading-6 text-white" %>
         </div>
       </div>
     </div>
     <div class="mb-12">
       <div class="grid gap-6 text-center md:grid-cols-3">
-        <div class="p-6 rounded-lg">
+        <div class="p-6 rounded-sm">
           <h3 class="mb-3 text-xl font-semibold">Automated Score Tracking</h3>
           <p>Instantly calculate scores for each round with ease, ensuring accuracy and efficiency.</p>
         </div>
-        <div class="p-6 rounded-lg">
+        <div class="p-6 rounded-sm">
           <h3 class="mb-3 text-xl font-semibold">Manage Card Sets</h3>
           <p>Keep track of your card sets and their colors throughout the game, all in one place.</p>
         </div>
-        <div class="p-6 rounded-lg">
+        <div class="p-6 rounded-sm">
           <h3 class="mb-3 text-xl font-semibold">Real-Time Progress</h3>
           <p>View your round-by-round progress and strategize accordingly for a competitive edge.</p>
         </div>
